@@ -59,9 +59,11 @@ function especialista_wp_mapa_web($params = array(), $content) {
 			'posts_per_page' => -1,
 			'post_status' => 'publish',
 		);
+		$post_type_obj = get_post_type_object( $custom_post_type );
+
 		$posts = get_posts($args);  
 		if (count($posts) > 0) { 
-			$html .= "<h2>".$custom_post_type."</h2>"; 
+			$html .= "<h2>".$post_type_obj->labels->name."</h2>"; 
 			$html .= "<ul class='webmap'>";
 			foreach($posts as $post) { 
 				$html .= "<li><a href='".get_the_permalink($post->ID)."'>".get_the_title($post->ID)."</a></li>";
